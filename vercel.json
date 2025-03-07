@@ -1,9 +1,10 @@
 {
     "version": 2,
-    "functions": {
-      "api/game.js": {
-        "runtime": "nodejs18.x"
-      }
-    }
-  }
-  
+    "builds": [
+    { "src": "server.js", "use": "@vercel/node" },
+    { "src": "src", "use": "@vercel/static-build" }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "index.js" },
+    { "src": "/(.*)", "dest": "/src/$1" }  ]
+}
